@@ -1,0 +1,33 @@
+{
+  "name": "reporter-saucelabs",
+  "version": "1.0.0",
+  "description": "Jasmine Test Reporter with Saucelabs",
+  "main": "./lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "protractor test/conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/h20dragon/reporter-saucelabs.git"
+  },
+  "keywords": [
+    "Jasmine",
+    "Jasmine2",
+    "Test",
+    "Reporter",
+    "testreporter",
+    "SauceLabs"
+  ],
+  "author": "H20Dragon",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/h20dragon/reporter-saucelabs/issues"
+  },
+  "homepage": "https://github.com/h20dragon/reporter-saucelabs#readme",
+  "dependencies": {
+    "saucelabs": "^1.4.0"
+  }
+}
