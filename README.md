@@ -17,12 +17,13 @@ npm install --save reporter-saucelabs
 1. Update your Jasmine config file.
 
 ```
-var MyReporter = require('../lib/reporter');
+var SauceReporter = require('reporter-saucelabs');
 
 exports.config = {
   directConnect: false,
-  sauceUser: process.env.SAUCE_USERNAME,
-  sauceKey: process.env.SAUCE_ACCESS_KEY,
+
+  sauceProxy: 'http://localhost:4445',
+  seleniumAddress: 'http://localhost:4445/wd/hub',
 
   capabilities: {
     maxDuration: 3600,
@@ -45,7 +46,14 @@ exports.config = {
   allScriptsTimeout: 60000,
 
   onPrepare: function onPrepare() {
-    jasmine.getEnv().addReporter(new MyReporter({ name: process.env.BUILD_TAG }));
+    var sauceReporter = new SauceReporter( { name:  process.env.BUILD_TAG,
+                                             proxy: "<YOUR PROXY>" });
+    jasmine.getEnv().addReporter(sauceReporter);
+
+    browser.getSession().then(function(session) {
+      sauceReporter.update( { session: session } );
+    });
+
   },
 
   jasmineNodeOpts: {
